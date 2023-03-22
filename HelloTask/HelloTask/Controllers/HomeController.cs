@@ -1,4 +1,5 @@
 ﻿using HelloTask.Models;
+using HelloTask.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,21 +7,24 @@ namespace HelloTask.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
-            return View();
+			return RedirectToAction("Hello");
         }
 
-        public IActionResult Privacy()
+        public IActionResult Hello()
         {
-            return View();
+            return View("HelloGet");
+        }
+
+		[HttpPost]
+		public IActionResult Hello(HelloHomeViewModel helloHomeViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("HelloGet", helloHomeViewModel);
+            }
+            return View("HelloPost", helloHomeViewModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

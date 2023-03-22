@@ -1,0 +1,18 @@
+﻿@using HelloTask.ViewModels;
+@model HelloHomeViewModel
+@{
+    ViewData["Title"] = "Main Page";
+}
+
+<div class="container main-block">
+	<form method="post" class="center-flex" asp-controller="Home" asp-action="Hello">
+		<div class="text-center">
+			<div class="form-group">
+				<label class="fw-bold" asp-for="Name">Enter your name</label>
+				<input class="w-100 form-control mt-2 border-radius-15 fw-bold" asp-for="Name" type="text" id="name" />
+				<span asp-validation-for="Name" class="text-danger fw-bold"></span>
+			</div>
+			<button class="btn btn-primary mt-3 w-100 border-radius-15 fw-bold" type="submit">Submit</button>
+		</div>
+    </form>
+</div>
